@@ -1,0 +1,23 @@
+{
+  "name": "homework-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "npx hardhat clean && npx hardhat compile",
+    "test": "npx hardhat test ./test/ERC20.test.ts",
+    "server": "npx hardhat node",
+    "watch": "nodemon --watch contracts --ext sol --exec 'npm run compile'",
+    "deploy": "npx hardhat run ./scripts/deploy.ts --network sepolia",
+    "verify": "npx hardhat verify --network sepolia 0x7c0C4ad2875Ac932D1070666ABb62b0066ef4BB6"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.1.8",
+    "dotenv": "^16.4.1",
+    "hardhat": "^2.19.4"
+  }
+}
