@@ -8,10 +8,7 @@ const EXCEEDING_AMOUNT = TOTAL_SUPPLY_DEFAULT + AMOUNT;
 
 async function deploy() {
   const [user1, user2] = await ethers.getSigners();
-
-  const Factory = await ethers.getContractFactory("ERC20Token");
-  const contract = await Factory.deploy("TestToken", "TST", TOTAL_SUPPLY_DEFAULT);
-  await contract.waitForDeployment();
+  const contract = await ethers.deployContract('ERC20Token', ["TestToken", "TST", TOTAL_SUPPLY_DEFAULT]);
 
   return { user1, user2, contract }
 }
