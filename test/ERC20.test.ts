@@ -6,17 +6,17 @@ const totalSupplyDefault = 10
 const amount = 1;
 const bigAmount = totalSupplyDefault + amount;
 
+async function deploy() {
+  const [user1, user2] = await ethers.getSigners();
+
+  const Factory = await ethers.getContractFactory("ERC20Token");
+  const contract = await Factory.deploy("TestToken", "TST", totalSupplyDefault);
+  await contract.waitForDeployment();
+
+  return { user1, user2, contract }
+}
+
 describe("ERC20", function() {
-  async function deploy() {
-    const [user1, user2] = await ethers.getSigners();
-
-    const Factory = await ethers.getContractFactory("ERC20Token");
-    const contract = await Factory.deploy("TestToken", "TST", totalSupplyDefault);
-    await contract.waitForDeployment();
-
-    return { user1, user2, contract }
-  }
-
   it("should be deployed", async function() {
     const { contract } = await loadFixture(deploy);
     expect(contract.target).to.be.properAddress;
